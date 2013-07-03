@@ -93,55 +93,45 @@
 
 <script type="text/javascript">
 
-/**
- * Panel toolbox
- * Init the panel toolbox is mandatory !!! 
- *
- */
+// Init the panel toolbox is mandatory !!!
 ION.initToolbox('empty_toolbox');
 
 
-/**
-* Tabs init
-*
-*/
-var rssTab = new TabSwapper({tabsContainer: 'rssTab', sectionsContainer: 'rssTabContent', selectedClass: 'selected', deselectedClass: '', tabs: 'li', clickers: 'li a', sections: 'div.tabcontent', cookieName: 'rssTab' });
+// Tabs
+var rssTab = new TabSwapper({
+	tabsContainer: 'rssTab',
+	sectionsContainer: 'rssTabContent',
+	selectedClass: 'selected',
+	deselectedClass: '',
+	tabs: 'li',
+	clickers: 'li a',
+	sections: 'div.tabcontent',
+	cookieName: 'rssTab'
+});
 
-/**
-* Settings form send
-* Sends the form data through XHR (Ajax) and reload (optional) the panel
-*
-*/
+// Send Form (XHR)
 ION.setFormSubmit(
 	'rssSettingsForm',				// ID of the form to send
 	'submit_config',				// ID of the submit button to put the send action on
 	'module/rss/rss/save_config' 	// URL of the controller's method which process data
 );
 
-/**
-* Get the current used pages
-*
-*/
+// Curent used pages
 ION.HTML(admin_url + 'module/rss/rss/get_pages', {}, {'update': 'rssPagesContainer'});
 
-/**
-* Page Drop callback function
-*
-* @param	HTML Dom Element	The dropped page.
-*								rel : contains the page ID
-* @param	HTML Dom Element	The receiver.
-* @param	Event				Drop event
-*
-*/
+
+// Page Drop
 function droppedAsRssFeed(element, droppable, event)
 {
-	ION.JSON(admin_url + 'module/rss/rss/add_page', {'id_page': element.rel});
+	ION.JSON(
+		admin_url + 'module/rss/rss/add_page',
+		{
+			'id_page': element.getProperty('data-id')
+		}
+	);
 };
 
-/**
-* Make each page draggable
-*
-*/
+// Drag page
 $$('.treeContainer .page a.title').each(function(item, idx)
 {
 	ION.addDragDrop(item, '.dropPageAsRssFeed', 'droppedAsRssFeed');

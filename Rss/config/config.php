@@ -1,25 +1,35 @@
-<?php 
+<?php
 
-/**
- * Module config file
- * These settings are set through the module administration panel
- * 
- * This file must not be directly edited
- *
- */
+$config['module']['rss'] = array
+(
+	/*
+	 * Main config items
+	 *
+	 */
+	'name' => "RSS",
+	'description' => "Makes one RSS feed from articles",
+	'author' => "Ionize Dev Team",
+	'version' => "1.1",
 
-// Module name. Should not be changed
-$config['module_rss_name'] = 'RSS';
+	'has_frontend' => TRUE,
+	'has_admin' => TRUE,
 
-// RSS Feed Title
-$config['module_rss_feed_title'] = 'RSS Title';
+	/*
+	 * Module's config items
+	 *
+	 */
+	'module_rss_name' => 'RSS',
+	'module_rss_feed_title'=> 'RSS Feed title',
 
-// RSS Feed Description
-$config['module_rss_feed_description'] = 'RSS feed description';
+	// RSS Feed Description
+	'module_rss_feed_description' => 'RSS feed description',
 
-// RSS Feed Author's Email
-$config['module_rss_feed_author'] = '';
+	// RSS Feed Author's Email
+	'module_rss_feed_author' => 'RSS Feed Author',
 
-// IDs of pages used for RSS, comma separated (childs pages will also be used)
-$config['module_rss_pages'] = '';
+	// IDs of pages used for RSS, comma separated (childs pages will also be used)
+	'module_rss_pages' => '',
+);
+
+return $config['module']['rss'];
 

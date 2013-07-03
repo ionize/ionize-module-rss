@@ -45,6 +45,3 @@ class Rss_model extends Article_model
 	}
 	
 }
-
-/* End of file rss_model.php */
-/* Location: /modules/RSS/models/rss_model.php */

@@ -33,6 +33,7 @@ class Rss extends Module_Admin
 	function index()
 	{
 		// Get the modules config file
+		$modules = array();
 		include APPPATH . 'config/modules.php';
 
 		// Get the module URI segment

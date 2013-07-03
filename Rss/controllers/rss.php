@@ -8,35 +8,30 @@
 *
 * @author	Ionize Dev Team
 */
-class Rss extends Base_Controller 
+class Rss extends My_Module
 {
 	/**
-	* Constructor
-	*
-	* @access	public
-	* @return	void
-	*/
+	 * Constructor
+	 *
+	 */
 	public function __construct()
 	{
 		parent::__construct();
-		
-		// Article Model : Needed by RSS model to extend Article_model
-		$this->load->model('article_model');
-		$this->load->model('rss_model');
-		
-		// Page Model : Used to get the main article's parent
-		$this->load->model('page_model');
-		
+
+		$this->load->model('page_model', '', TRUE);
+		$this->load->model('article_model', '', TRUE);
+		$this->load->model('rss_model', '', TRUE);
+
 		$this->load->helper('xml');
 		$this->load->helper('text');
 	}
 
+
 	/**
-	* Index
-	*
-	* @access	public
-	* @return	parsed view
-	*/
+	 * @param bool $lang
+	 *
+	 * @return parsed
+	 */
 	function index($lang = FALSE)
 	{
 		if ($lang == FALSE)
@@ -44,21 +39,20 @@ class Rss extends Base_Controller
 
 		return $this->feed($lang);
 	}
-	
+
+
 	/**
-	* Show the feed
-	*
-	* @access	public
-	* @return	parsed view
-	*/
+	 * Displays the feed
+	 * @param bool $lang
+	 *
+	 */
 	function feed($lang = FALSE)
 	{
 		// Page URL index to use. For compat.
 		$page_url = (config_item('url_mode') == 'short') ? 'url' : 'path';
-		
-	
+
 		$id_pages = explode(',', config_item('module_rss_pages'));
-		
+
 		$articles = $this->rss_model->get_articles($id_pages, $lang);
 
 		// Articles ID array
@@ -129,6 +123,3 @@ class Rss extends Base_Controller
 		));
 	}
 }
-
-/* End of file rss.php */
-/* Location: /modules/Rss/controllers/rss.php */

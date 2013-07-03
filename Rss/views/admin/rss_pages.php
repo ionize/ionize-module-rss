@@ -13,7 +13,7 @@
 				<a class="left link-img page" ></a>
 		
 				<!-- Unlink icon -->
-				<a class="icon unlink right" rel="<?php echo $page['id_page']; ?>"></a>
+				<a class="icon unlink right" data-id="<?php echo $page['id_page']; ?>"></a>
 		
 				<!-- Title -->
 				<a id="link_title" style="overflow:hidden;height:16px;display:block;" class="pl5 pr10" title="<?php echo $title; ?>"><?php echo $title; ?></a>
@@ -32,6 +32,12 @@
 */
 $$('#rssPageList li .unlink').each(function(item)
 {
-	ION.initRequestEvent(item, '<?php echo admin_url() ?>module/rss/rss/remove_page', {'id_page': item.getProperty('rel')});
+	ION.initRequestEvent(
+		item,
+		'<?php echo admin_url() ?>module/rss/rss/remove_page',
+		{
+			'id_page': item.getProperty('data-id')
+		}
+	);
 });
 </script>
