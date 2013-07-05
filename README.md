@@ -1,17 +1,17 @@
 Ionize RSS module
 =======================
 
-Version : 1.0
+Version : 1.1
 
-Ionize version : 0.9.9
+Ionize version : 1.0.x
 
-Released on january 2013
+Released on july 2013
 
 ### About
 
 RSS gives RSS capabilities to Ionize.
 
-This version of RSS works only with Ionize from version 0.9.9
+This version of RSS works only with Ionize from version 1.0.x
 
 
 ### Authors
