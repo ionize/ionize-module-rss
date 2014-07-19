@@ -9,7 +9,7 @@ $config['module']['rss'] = array
 	'name' => "RSS",
 	'description' => "Makes one RSS feed from articles",
 	'author' => "Ionize Dev Team",
-	'version' => "1.1",
+	'version' => "1.2",
 
 	'has_frontend' => TRUE,
 	'has_admin' => TRUE,

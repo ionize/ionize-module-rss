@@ -1,6 +1,6 @@
 <div id="maincolumn">
 
-	<h2 class="main" style="background:url(<?php echo base_url(); ?>modules/Rss/assets/images/icon_48_module.png) no-repeat top left;"><?php echo config_item('module_rss_name'); ?></h2>
+	<h2 class="main rss"><?php echo config_item('module_rss_name'); ?></h2>
 
 	<div class="subtitle">
 
@@ -78,13 +78,16 @@
 		</div>
 	
 		<!-- RSS Pages to use tab content -->
-		<div class="tabcontent droppable dropPageAsRssFeed">
-			
-			<?php echo lang('ionize_label_drop_page_here'); ?>
-			
-			<!-- This container is feeded by Ajax -->
-			<div id="rssPagesContainer"></div>
-		
+
+		<div class="tabcontent">
+
+			<p><?php echo lang('ionize_label_drop_page_here'); ?></p>
+
+			<div id="rssPagesContainer" class="droppable dropPage">
+
+			</div>
+
+
 		</div>
 		
 	</div>
@@ -119,34 +122,22 @@ ION.setFormSubmit(
 // Curent used pages
 ION.HTML(admin_url + 'module/rss/rss/get_pages', {}, {'update': 'rssPagesContainer'});
 
-
 // Page Drop
-function droppedAsRssFeed(element, droppable, event)
+$('rssPagesContainer').onDrop = function(element, droppable, event)
 {
-	ION.JSON(
-		admin_url + 'module/rss/rss/add_page',
-		{
-			'id_page': element.getProperty('data-id')
-		}
-	);
+	if (element.getProperty('data-type') == 'page')
+	{
+		ION.JSON(
+			ION.adminUrl + 'module/rss/rss/add_page',
+			{
+				'id_page': element.getProperty('data-id')
+			}
+		);
+	}
+	else
+	{
+		ION.notification('error', Lang.get('module_rss_error_only_pages'));
+	}
 };
 
-// Drag page
-$$('.treeContainer .page a.title').each(function(item, idx)
-{
-	ION.addDragDrop(item, '.dropPageAsRssFeed', 'droppedAsRssFeed');
-});
-
-// Adds the drag'n drop on each child page when opening a page in the tree
-// Mandatory because the childs pages aren't known before opening
-$$('.treeContainer').each(function(tree, idx)
-{
-	tree.retrieve('tree').addEvent('get', function()
-	{
-		$$('.treeContainer .page a.title').each(function(item, idx)
-		{
-			ION.addDragDrop(item, '#dropPageAsRssFeed', 'ION.droppedAsRssFeed');
-		});	
-	});
-});
 </script>

@@ -15,6 +15,7 @@ $lang['module_rss_label_feed_author'] 			= 'Author\'s email (optional)';
 $lang['module_rss_settings'] 					= 'RSS feed settings';
 $lang['module_rss_pages'] 						= 'RSS Pages';
 $lang['module_rss_error_writing_config_file'] 	= 'modules/Rss/config/config.php could not be written !';
+$lang['module_rss_error_only_pages'] 			= 'Only pages can be dropped here !';
 
 /* End of file rss_lang.php */
 /* Location: /modules/Rss/language/en/rss_lang.php */
